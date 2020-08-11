@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  {%- for category, message in get_flashed_messages(with_categories = true) %}
+  <div class = "alert alert-danger">
+    {{ message }}
+  </div>
+  {%- endfor %}
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="section-title  text-center">
+        <h2>About us</h2>
+        <span class="title-line"><i class="fa fa-car"></i></span>
+        <p>HSK Car Rentals </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="display-table">
+        <div class="display-table-cell">
+          <div class="about-content">
+            <p>HSK Car Rentals was established in July 2020 by a three students of University of Alabama at Birmingham named Harish, Sandeep, and Kireeti.
+              Our business was started with only 3 cars and at only 3 locations.
+              Later on with your support we have grown day by day.
+              Now we are offering our services in different location in America with wide variety of multiple brand new cars.
+              Serving the customers needs is our top priority.
+              We offer a wide variety of plans for our customers based on their needs.
+              Now we have more than 100000 + happy customers and it's still growing.
+              Thank You for you love and support.
+            </p>
+            <h3 style="font-weight: bolder; float: right">
+              ~~Team-HSK Car Rentals~~
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="about-image">
+        <img src="../static/assets/img/home-2-about.png" alt="JSOFT">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+

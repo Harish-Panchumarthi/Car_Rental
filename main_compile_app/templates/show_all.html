@@ -1,0 +1,26 @@
+{% extends "base2.html" %}
+{% block content %}
+<body>
+
+<div class="container">
+  {%- for category, message in get_flashed_messages(with_categories = true) %}
+  <div class = "alert alert-danger">
+    {{ message }}
+  </div>
+  {%- endfor %}
+</div>
+
+<form action = "{{ url_for('listcustomer') }}" method = "GET">
+<p>
+    <input type="submit" name="submit" value="List Customers"/>
+</p>
+</form>
+
+<form action = "{{ url_for('listadmin') }}" method = "GET">
+<p>
+    <input type="submit" name="submit" value="List Admin"/>
+</p>
+</form>
+
+</body>
+{% endblock %}

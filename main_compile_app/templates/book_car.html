@@ -1,0 +1,51 @@
+{% extends "base2.html" %}
+{% block content %}
+<div class="container">
+  {%- for category, message in get_flashed_messages(with_categories = true) %}
+  <div class = "alert alert-danger">
+    {{ message }}
+  </div>
+  {%- endfor %}
+</div>
+<section id="slideslow-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="slideshowcontent">
+          <div class="display-table">
+            <div class="display-table-cell">
+              <h1>BOOK A CAR TODAY!</h1>
+              <div class="book-ur-car">
+                <form action="{{url_for('findcar')}}" method="POST">
+                  <div class="pick-location bookinput-item">
+                    <select name="location" id="location" class="custom-select">
+                      <option selected>Pick Location</option>
+                      <option value="Birmingham">Birmingham</option>
+                      <option value="Atlanta">Atlanta</option>
+                      <option value="Nashville">Nashville</option>
+                      <option value="Tampa">Tampa</option>
+                    </select>
+                  </div>
+
+                  <div class="pick-date bookinput-item">
+                    <input type="hidden" name="uname" value="{{uname}}">
+                    <input type="text" name="startDate2" id="startDate2" placeholder="Pick Date" />
+                  </div>
+
+                  <div class="retern-date bookinput-item">
+                    <input type="text" name="endDate2" id="endDate2" placeholder="Return Date" />
+                  </div>
+
+                  <div class="bookcar-btn bookinput-item">
+                    <button type="submit">Book Car</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

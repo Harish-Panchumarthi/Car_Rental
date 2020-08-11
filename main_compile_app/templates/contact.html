@@ -1,0 +1,42 @@
+{% extends "base2.html" %}
+{% block content %}
+
+<div class="container">
+  {%- for category, message in get_flashed_messages(with_categories = true) %}
+  <div class = "alert alert-danger">
+    {{ message }}
+  </div>
+  {%- endfor %}
+</div>
+
+ <style>
+      #blink {
+        font-size: 30px;
+        font-weight: bold;
+        font-family: sans-serif;
+        color: #1c87c9;
+        transition: 0.0s;
+      }
+    </style>
+
+    <section id="page-title-area" class="section-padding overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title  text-center">
+                        <h2>Contact Us</h2>
+                        <span class="title-line"><i class="fa fa-car"></i></span>
+                        <p>HSK Car Rentals</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="maparea">
+       <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d2542.929764569186!2d-86.8059119646929!3d33.50044371453497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d33.499503499999996!2d-86.8050524!5e1!3m2!1sen!2sus!4v1597019555644!5m2!1sen!2sus" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+
+
+
+{% endblock %}

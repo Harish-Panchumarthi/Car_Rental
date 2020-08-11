@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-8 m-auto">
+      <div class="login-page-content">
+        <div class="login-form">
+          <h3>Welcome Back!</h3>
+
+          <div>
+            {%- for category, message in get_flashed_messages(with_categories = true) %}
+            <div class = "alert alert-danger">
+              {{ message }}
+            </div>
+            {%- endfor %}
+          </div>
+
+          <form action="custlogin" method="POST">
+            <div class="uname">
+              <input type="text" placeholder="Username" id="uname" name="uname">
+            </div>
+            <div class="pwd">
+              <input type="password" placeholder="Password" id="pwd" name="pwd">
+            </div>
+            <div class="log-btn">
+              <button type="submit"><i class="fa fa-sign-in"></i> Log In</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="create-ac">
+          <p>Don't have an account? <a href="custsignup">Sign Up</a></p>
+        </div>
+        <div class="login-menu">
+          <a href="about1">About</a>
+          <span>|</span>
+          <a href="contact1">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

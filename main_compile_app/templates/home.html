@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  {%- for category, message in get_flashed_messages(with_categories = true) %}
+  <div class = "alert alert-danger">
+    {{ message }}
+  </div>
+  {%- endfor %}
+</div>
+
+  <div class="container" style="padding: 15px">
+    <div class="card" style="height: 300px">
+      <div class="card-header text-center">
+        <h2>
+          Welcome to HSK Rental, Choose your appropriate option below
+        </h2>
+      </div>
+
+      <div class="card-body" style="background-image: url('../static/assets/img/home-2-about.png')">
+        <br class="row">
+          <div class="col-6" style="width: 100%; left: 25%">
+              <div class="bookcar-btn">
+                <a href="{{url_for('clogin')}}">
+                  <button type="button" class="btn btn-secondary btn-lg btn-block" style="color: rgb(255,208,0); font-weight: bolder">Customer Login</button>
+                </a>
+              </div>
+          </div>
+
+          <br>
+          <br>
+
+          <div class="col-6" style="width: 100%; left: 25%">
+            <div class="bookcar-btn">
+              <a href="{{url_for('alogin')}}">
+                <button type="button" class="btn btn-secondary btn-lg btn-block" style="color: rgb(255,208,0); font-weight: bolder">Admin Login</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+

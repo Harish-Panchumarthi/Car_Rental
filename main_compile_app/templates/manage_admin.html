@@ -1,0 +1,124 @@
+{% extends "baseadmin.html" %}
+{% block content %}
+
+<div class="container">
+  {%- for category, message in get_flashed_messages(with_categories = true) %}
+  <div class = "alert alert-danger">
+    {{ message }}
+  </div>
+  {%- endfor %}
+</div>
+
+<div class="container">
+      <div class="row">
+        <div class="col md-12">
+          <div class="jumbotron p-3">
+            <div class="row">
+              <div class="col md 4"><h2>Manage Admins</h2></div>
+              <!-- <div class="col md 8"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Customer</button></div> -->
+              </div>
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alter" aria-label="close">
+                <span aria-hidden="true">x</span></button>
+                {{message}}}
+              </div>
+              {% endfor %}
+              {% endif %}
+              {% endwith %}
+              <table class="table table-hover table-dark">
+                <tr>
+                  <td>Id</td>
+                  <td>First Name</td>
+                  <td>Last Name</td>
+                  <td>User Name</td>
+                  <td>Email Id</td>
+                  <td>Phone</td>
+                </tr>
+                {% for row in rows %}
+                <tr>
+                  <td>{{row['id']}}</td>
+                  <td>{{row['fname']}}</td>
+                  <td>{{row['lname']}}</td>
+                  <td>{{row['uname']}}</td>
+                  <td>{{row['email']}}</td>
+                  <td>{{row['phone']}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modeledit{{row['id']}}">Update</button>
+                    <a href="/deladmin/{{row['id']}}" class="btn btn-danger btn-xs" onclick="return confirm("Confirm delete of selected Entry")">Delete</a>
+                  </td>
+                </tr>
+                <div class="modal fade" id="modeledit{{row['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Car Info</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form class="" action="{{url_for('updateadmin')}}" method="POST">
+                          <div class="form-group">
+                            <input type="hidden" name="id" value="{{row['id']}}">
+                            <label>First Name:</label>
+                            <input type="text" class="form-control" name="fname" value="{{row['fname']}}">
+                          </div>
+                          <div class="form-group">
+                            <label>Last Name:</label>
+                            <input type="text" class="form-control" name="lname" value="{{row['lname']}}">
+                          </div>
+                          <div class="form-group">
+                            <label>User Name</label>
+                            <input type="text" class="form-control" name="uname" value="{{row['uname']}}" readonly>
+                          </div>
+                          <div class="form-group">
+                            <label>price per day:</label>
+                            <input type="text" class="form-control" name="gender" value="{{row['gender']}}" readonly>
+                          </div>
+                          <div class="form-group">
+                            <label>Age:</label>
+                            <input type="text" class="form-control" name="age" value="{{row['age']}}">
+                          </div>
+                          <div class="form-group">
+                            <label>E-Mail:</label>
+                            <input type="text" class="form-control" name="email" value="{{row['email']}}">
+                          </div>
+                          <div class="form-group">
+                            <label>Phone:</label>
+                            <input type="text" class="form-control" name="phone" value="{{row['phone']}}">
+                          </div>
+                          <div class="form-group">
+                            <label>Address:</label>
+                            <input type="text" class="form-control" name="address" value="{{row['address']}}">
+                          </div>
+                          <div class="form-group">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button class="btn btn-primary" type="submit">Update</button>
+
+                            <!-- <td>{{row['id']}}</td> = 0
+                            <td>{{row['fname']}}</td>= 1
+                            <td>{{row["lname"]}}</td>= 2
+                            <td>{{row["uname"]}}</td>= 3
+                            <td>{{row["gender"]}}</td>= 4
+                            <td>{{row['age']}}</td>= 5
+                            <td>{{row['email']}}</td>= 6
+                            <td>{{row['phone']}}</td>= 7
+                            <td>{{row['address']}}</td>= 8 -->
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </table>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+{% endblock %}

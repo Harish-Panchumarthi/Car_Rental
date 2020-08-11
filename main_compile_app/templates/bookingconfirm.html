@@ -1,0 +1,72 @@
+{% extends "base2.html" %}
+{% block content %}
+
+<div class="container">
+  {%- for category, message in get_flashed_messages(with_categories = true) %}
+  <div class = "alert alert-danger">
+    {{ message }}
+  </div>
+  {%- endfor %}
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="modal-title">
+      <h2>Booking Confirmation Details</h2>
+    </div>
+    <div class="">
+
+    </div>
+    <div class="col-lg-12">
+      <form method = "POST">
+        <div class="form-group">
+          <label for="name"></label>
+          <!-- <input type="text" class="form-control" name="name"  value="{{firstname}} {{lastname}} " readonly> -->
+        </div>
+        <div class="form-group">
+          <label for="name">Booking Id:</label>
+          <input type="hidden" name="carid" value="{{carid}}">
+          <input type="hidden" name="uname" value="{{uname}}">
+          <input type="text" class="form-control" name="bookingid"  value="{{bookingid}}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="name">Full Name:</label>
+          <input type="text" class="form-control" name="name"  value="{{firstname}} {{lastname}} " readonly>
+        </div>
+        <div class="form-group">
+          <label for="name">Car Model:</label>
+          <input type="text" class="form-control" name="model"  value="{{model}}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Total Price:</label>
+          <input type="text" class="form-control" name="price"  value="{{price}}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="name">Start Date:</label>
+          <input type="text" class="form-control" name="startdate"  value="{{startdate}}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="name">End Date:</label>
+          <input type="text" class="form-control" name="enddate"  value="{{enddate}}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="name">Pickup Time:</label>
+          <input type="text" class="form-control" name="starttime"  value="{{starttime}}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="name">Drop-Off Time:</label>
+          <input type="text" class="form-control" name="returntime"  value="{{returntime}}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Pickup Location:</label>
+          <input type="text" class="form-control" name="pickloc"  value="{{pickloc}}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Drop-Off Location:</label>
+          <input type="text" class="form-control" name="droploc"  value="{{droploc}}" readonly>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

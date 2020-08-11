@@ -1,0 +1,158 @@
+{% extends "baseadmin.html" %}
+{% block content %}
+
+<div class="container">
+  {%- for category, message in get_flashed_messages(with_categories = true) %}
+  <div class = "alert alert-danger">
+    {{ message }}
+  </div>
+  {%- endfor %}
+</div>
+
+<div class="container">
+      <div class="row">
+        <div class="col md-12">
+          <div class="jumbotron p-3">
+            <div class="row">
+              <div class="col md 4"><h2>Manges Cars</h2></div>
+                <div class="col md 8"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add New Car</button></div>
+              </div>
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alter" aria-label="close">
+                <span aria-hidden="true">x</span></button>
+                {{message}}}
+              </div>
+              {% endfor %}
+              {% endif %}
+              {% endwith %}
+              <table class="table table-hover table-dark">
+                <tr>
+                  <th>VEHICLE ID</th>
+                  <th>CAR</th>
+                  <th>REGISTRATION NUMBER</th>
+                  <th>Seating Capacity</th>
+                  <th>VEHICLE TYPE</th>
+                  <th>PRICE PER DAY</th>
+                  <th>AVAILABILITY</th>
+                  <th>AVAILABLE LOCATION</th>
+                </tr>
+                {% for row in records %}
+                <tr>
+                  <td>{{row[0]}}</td>
+                  <td>{{row[1]}}</td>
+                  <td>{{row[2]}}</td>
+                  <td>{{row[3]}}</td>
+                  <td>{{row[4]}}</td>
+                  <td>{{row[5]}}</td>
+                  <td>{{row[6]}}</td>
+                  <td>{{row[7]}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modeledit{{row[0]}}">Update</button>
+                    <a href="/delcar/{{row[0]}}" class="btn btn-danger btn-xs" onclick="return confirm("Confirm delete of selected Entry")">Delete</a>
+                  </td>
+                </tr>
+                <div class="modal fade" id="modeledit{{row[0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Car Info</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form class="" action="{{url_for('updaterec')}}" method="POST">
+                          <div class="form-group">
+                            <input type="hidden" name="vid" value="{{row[0]}}">
+                            <label>car model:</label>
+                            <input type="text" class="form-control" name="model" value="{{row[1]}}">
+                          </div>
+                          <div class="form-group">
+                            <label>registration No:</label>
+                            <input type="text" class="form-control" name="rno" value="{{row[2]}}">
+                          </div>
+                          <div class="form-group">
+                            <label>Seating Capacity:</label>
+                            <input type="text" class="form-control" name="seating" value="{{row[3]}}">
+                          </div>
+                          <div class="form-group">
+                            <label>Vehicle Type:</label>
+                            <input type="text" class="form-control" name="vtype" value="{{row[4]}}">
+                          </div>
+                          <div class="form-group">
+                            <label>price per day:</label>
+                            <input type="text" class="form-control" name="priceperday" value="{{row[5]}}">
+                          </div>
+                          <div class="form-group">
+                            <label>Status:</label>
+                            <input type="text" class="form-control" name="vstatus" value="{{row[6]}}">
+                          </div>
+                          <div class="form-group">
+                            <label>Location:</label>
+                            <input type="text" class="form-control" name="location" value="{{row[7]}}">
+                          </div>
+                          <div class="form-group">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button class="btn btn-primary" type="submit">Update Car</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </table>
+          </div>
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add New Car</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="{{url_for('addcarform')}}" method="POST">
+                    <div class="form-group">
+                      <label>car model:</label>
+                      <input type="text" class="form-control" name="model" required="1">
+                    </div>
+                    <div class="form-group">
+                      <label>registration No:</label>
+                      <input type="text" class="form-control" name="rno" required="1"">
+                    </div>
+                    <div class="form-group">
+                      <label>Seating Capacity:</label>
+                      <input type="text" class="form-control" name="seating" required="1"">
+                    </div>
+                    <div class="form-group">
+                      <label>Vehicle Type:</label>
+                      <input type="text" class="form-control" name="vtype" required="1"">
+                    </div>
+                    <div class="form-group">
+                      <label>price per day:</label>
+                      <input type="text" class="form-control" name="priceperday" required="1"">
+                    </div>
+                    <div class="form-group">
+                      <label>Location:</label>
+                      <input type="text" class="form-control" name="location" required="1"">
+                    </div>
+                    <div class="form-group">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button class="btn btn-primary" type="submit">Add Car</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+{% endblock %}

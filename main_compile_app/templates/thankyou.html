@@ -1,0 +1,18 @@
+{% extends "base2.html" %}
+{% block content %}
+
+<div class="container">
+  {%- for category, message in get_flashed_messages(with_categories = true) %}
+  <div class = "alert alert-danger">
+    {{ message }}
+  </div>
+  {%- endfor %}
+</div>
+
+  <div class="container" style="align-content: center !important;>
+      <span class="psw"><a href="/"><b><i>Login</i></b></a></span>
+    </div>
+   <div class="text-center">
+     <img src="https://academy.pillaicenter.com/wp-content/themes/wplms/images/profilethanks.png">
+   </div>
+{% endblock %}
